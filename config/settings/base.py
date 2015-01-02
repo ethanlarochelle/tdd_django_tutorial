@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+from unipath import Path
 from django.core.exceptions import ImproperlyConfigured
 
 
@@ -22,10 +22,15 @@ def get_env_variable(var_name):
         raise ImproperlyConfigured(error_msg)
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
-
+BASE_DIR = Pathg(__file__).ancestor(3)
+MEDIA_ROOT = BASE_DIR.child("media")
+STATIC_ROOT = BASE_DIR.child("assets")
+STATICFILES_DIRS = (
+    BASE_DIR.child("assets")
+)
+TEMPLATE_DIRS = (
+    BASE_DIR.child("templates")
+)
 ALLOWED_HOSTS = []
 
 
@@ -82,5 +87,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+
