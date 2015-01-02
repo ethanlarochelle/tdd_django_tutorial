@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-from unipath import Path
+import os
 from django.core.exceptions import ImproperlyConfigured
 
 
@@ -22,14 +22,15 @@ def get_env_variable(var_name):
         raise ImproperlyConfigured(error_msg)
 
 
-BASE_DIR = Pathg(__file__).ancestor(3)
-MEDIA_ROOT = BASE_DIR.child("media")
-STATIC_ROOT = BASE_DIR.child("assets")
+settings_dir = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.abspath(os.path.join(settings_dir, '../../'))
+MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../media'))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../assets'))
 STATICFILES_DIRS = (
-    BASE_DIR.child("assets")
+    os.path.abspath(os.path.join(BASE_DIR, '../assets')),
 )
 TEMPLATE_DIRS = (
-    BASE_DIR.child("templates")
+    os.path.abspath(os.path.join(BASE_DIR, '../templates')),
 )
 ALLOWED_HOSTS = []
 
