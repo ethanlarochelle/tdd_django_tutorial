@@ -25,12 +25,12 @@ def get_env_variable(var_name):
 settings_dir = os.path.dirname(os.path.dirname(__file__))
 BASE_DIR = os.path.abspath(os.path.join(settings_dir, '../../'))
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../media'))
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../assets'))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'assets'))
 STATICFILES_DIRS = (
-    os.path.abspath(os.path.join(BASE_DIR, '../assets')),
+    os.path.abspath(os.path.join(BASE_DIR, 'assets')),
 )
 TEMPLATE_DIRS = (
-    os.path.abspath(os.path.join(BASE_DIR, '../templates')),
+    os.path.abspath(os.path.join(BASE_DIR, 'templates')),
 )
 ALLOWED_HOSTS = []
 
